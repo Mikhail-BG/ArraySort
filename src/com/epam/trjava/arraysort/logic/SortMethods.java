@@ -1,6 +1,5 @@
 package com.epam.trjava.arraysort.logic;
 
-
 /**
  * Class implements 4 method of array sorting
  * 
@@ -16,7 +15,6 @@ public final class SortMethods {
 	 * @return sorted array of Objects 
 	 */
 	public static Object[] selectionSort(Object[] array) {
-
 		double[] arrayToSort = convertArrayToDouble(array);
 
 		if (null != arrayToSort) {
@@ -42,15 +40,13 @@ public final class SortMethods {
 		}
 	}
 
-	
 	/**
-	 * Method implements conversion each element of array to double 
+	 * Method implements conversion of each element of array to double 
 	 * 
 	 * @param array of Objects to convert into double
 	 * @return array of double elements
 	 */
 	private static double[] convertArrayToDouble(Object[] array) {
-
 		double[] myArray = new double[array.length];
 		int index = 0;
 
@@ -61,18 +57,16 @@ public final class SortMethods {
 			} else
 				return null;
 		}
-
 		return myArray;
 	}
 	
 	/**
-	 * Method implements conversion each element of array to Object
+	 * Method implements conversion of each element of array to Object
 	 * 
 	 * @param array of double elements to convert into Object
 	 * @return array of Object elements
 	 */
 	private static Object[] convertArrayToObject(double[] array){
-		
 		Object[] myArray = new Object[array.length];
 		int index = 0;
 		
@@ -80,8 +74,6 @@ public final class SortMethods {
 			myArray[index] = temp;
 			index++;
 		}
-		
 		return myArray;
 	}
-
 }

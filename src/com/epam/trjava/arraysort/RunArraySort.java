@@ -5,7 +5,7 @@ import com.epam.trjava.arraysort.logic.SortMethods;
 public class RunArraySort {
 
 	public static void main(String[] args) {
-		Object[] array = {1, 5.3, 6, 0};
+		Object[] array = {1, 5.3, 9.999, 0, 45, -454.4, -0.4};
 		
 		System.out.println("--- default array ---");
 		printArray(array);
@@ -13,7 +13,7 @@ public class RunArraySort {
 	}
 	
 	private static Object[] selectionSort(Object[] array){
-		System.out.println("--- sorted by selection sort ---");
+		System.out.println("--- sorted by 'Selection Sort' ---");
 		return SortMethods.selectionSort(array);
 	}
 	
