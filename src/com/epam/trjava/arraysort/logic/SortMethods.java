@@ -4,14 +4,15 @@ import com.epam.trjava.arraysort.logic.exception.NotANumberInArrayException;
 import com.epam.trjava.arraysort.logic.exception.ZeroLengthArrayException;
 
 /**
- * Class implements 4 method of array sorting
+ * Class implements four method of array sorting for numeric elements: Selection
+ * sort; Insertion sort; Bubble sort; QuickSort
  * 
  * @autor Mikhail Bahatyrou
  * @version 1.0
  */
 public final class SortMethods {
 
-	/** Number of iterations to compare perfomance */
+	/** Number of iterations to compare performance */
 	public static long numOfIterations = 0;
 
 	/**
@@ -199,7 +200,7 @@ public final class SortMethods {
 			}
 		}
 
-		//recursion
+		// recursion
 		if (lowIndex < j)
 			quickSortPartition(array, lowIndex, j);
 		if (highIndex > i)
