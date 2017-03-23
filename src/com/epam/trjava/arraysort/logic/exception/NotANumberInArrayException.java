@@ -3,7 +3,7 @@ package com.epam.trjava.arraysort.logic.exception;
 public class NotANumberInArrayException extends Exception {
 
 	/**
-	 * 
+	 * Check: if array includes not a number value
 	 */
 	private static final long serialVersionUID = 1L;
 

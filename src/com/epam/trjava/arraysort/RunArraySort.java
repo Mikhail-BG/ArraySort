@@ -5,7 +5,8 @@ import com.epam.trjava.arraysort.logic.SortMethods;
 public class RunArraySort {
 
 	public static void main(String[] args) {
-		//Object[] array = {'v'};
+		//Object[] array = {};
+		//Object[] array = {435, 'D', 0.999, -56, 454.3434, -546.253535, -56};
 		Object[] array = {435, 1.45, 0.999, -56, 454.3434, -546.253535, -56};
 		System.out.println("--- default array ---");
 		printArray(array); System.out.println();
