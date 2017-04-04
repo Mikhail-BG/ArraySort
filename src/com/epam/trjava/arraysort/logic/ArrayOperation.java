@@ -7,9 +7,9 @@ package com.epam.trjava.arraysort.logic;
  * @version 1.0
  */
 
-public final class ArrayOperations {
+public final class ArrayOperation {
 
-	private ArrayOperations() {
+	private ArrayOperation() {
 	}
 
 	/**

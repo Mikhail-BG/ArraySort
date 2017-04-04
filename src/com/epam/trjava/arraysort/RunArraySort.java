@@ -1,6 +1,6 @@
 package com.epam.trjava.arraysort;
 
-import com.epam.trjava.arraysort.logic.ArrayOperations;
+import com.epam.trjava.arraysort.logic.ArrayOperation;
 import com.epam.trjava.arraysort.logic.SortMethods;
 
 public class RunArraySort {
@@ -10,19 +10,19 @@ public class RunArraySort {
 		//double[] array = {435, 'D', 0.999, -56, 454.3434, -546.253535, -56};
 		double[] array = {435, 1.45, 0.999, -56, 454.3434, -546.253535, -56};
 		System.out.println("--- default array ---");
-		ArrayOperations.printArray(array); 
+		ArrayOperation.printArray(array); 
 		System.out.println();
 		
-		ArrayOperations.printArray(selectionSort(array));
+		ArrayOperation.printArray(selectionSort(array));
 		System.out.println();
 		
-		ArrayOperations.printArray(insertionSort(array)); 
+		ArrayOperation.printArray(insertionSort(array)); 
 		System.out.println();
 		
-		ArrayOperations.printArray(bubbleSort(array));
+		ArrayOperation.printArray(bubbleSort(array));
 		System.out.println();
 		
-		ArrayOperations.printArray(quickSort(array));
+		ArrayOperation.printArray(quickSort(array));
 		System.out.println();
 	
 	}
