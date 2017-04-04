@@ -1,8 +1,5 @@
 package com.epam.trjava.arraysort.logic;
 
-import com.epam.trjava.arraysort.logic.exception.NotANumberInArrayException;
-import com.epam.trjava.arraysort.logic.exception.ZeroLengthArrayException;
-
 /**
  * Class implements four method of array sorting for numeric elements: Selection
  * sort; Insertion sort; Bubble sort; QuickSort
@@ -11,9 +8,8 @@ import com.epam.trjava.arraysort.logic.exception.ZeroLengthArrayException;
  * @version 1.0
  */
 public final class SortMethods {
-
-	/** Number of iterations to compare performance */
-	public static long numOfIterations = 0;
+	
+	private SortMethods(){}
 
 	/**
 	 * Method implements <b>Selection Sort</b>. The algorithm divides the input
@@ -28,34 +24,29 @@ public final class SortMethods {
 	 * 
 	 * @see https://en.wikipedia.org/wiki/Selection_sort
 	 * @param array
-	 *            of Objects to sort, if they are numbers
-	 * @return sorted array of Objects
+	 *            of double to sort, if they are numbers
+	 * @return sorted array of double
 	 */
-	public static Object[] selectionSort(Object[] array) {
-		numOfIterations = 0;
-		double[] arrayToSort = getConvertedArray(array);
-
-		if (null != arrayToSort) {
+	public static double[] selectionSort(double[] array) {
+		if (isNotEmptyArray(array)) {
 			int min;
 			double temp;
 
-			for (int index = 0; index < arrayToSort.length - 1; index++) {
+			for (int index = 0; index < array.length - 1; index++) {
 				min = index;
-				for (int scan = index + 1; scan < arrayToSort.length; scan++) {
-					if (arrayToSort[scan] < arrayToSort[min]) {
+				for (int scan = index + 1; scan < array.length; scan++) {
+					if (array[scan] < array[min]) {
 						min = scan;
 					}
 				}
 				if (min != index) {
-					temp = arrayToSort[min];
-					arrayToSort[min] = arrayToSort[index];
-					arrayToSort[index] = temp;
-					numOfIterations++;
+					temp = array[min];
+					array[min] = array[index];
+					array[index] = temp;
 				}
 			}
-			return convertArrayToObject(arrayToSort);
+			return array;
 		}
-		System.out.println("Selection Sort failed");
 		return array;
 	}
 
@@ -68,30 +59,25 @@ public final class SortMethods {
 	 * 
 	 * @see https://en.wikipedia.org/wiki/Insertion_sort
 	 * @param array
-	 *            of Objects to sort, if they are numbers
-	 * @return sorted array of Objects
+	 *            of double to sort, if they are numbers
+	 * @return sorted array of double
 	 */
-	public static Object[] insertionSort(Object[] array) {
-		numOfIterations = 0;
-		double[] arrayToSort = getConvertedArray(array);
-
-		if (null != arrayToSort) {
+	public static double[] insertionSort(double[] array) {
+		if (isNotEmptyArray(array)) {
 			double temp;
 			int scan = 0;
-			for (int index = 1; index < arrayToSort.length; index++) {
-				temp = arrayToSort[index];
+			for (int index = 1; index < array.length; index++) {
+				temp = array[index];
 				scan = index - 1;
 
-				while (scan >= 0 && arrayToSort[scan] > temp) {
-					arrayToSort[scan + 1] = arrayToSort[scan];
-					arrayToSort[scan] = temp;
+				while (scan >= 0 && array[scan] > temp) {
+					array[scan + 1] = array[scan];
+					array[scan] = temp;
 					scan--;
-					numOfIterations++;
 				}
 			}
-			return convertArrayToObject(arrayToSort);
+			return array;
 		}
-		System.out.println("Insertion Sort failed");
 		return array;
 	}
 
@@ -104,29 +90,24 @@ public final class SortMethods {
 	 * 
 	 * @see https://en.wikipedia.org/wiki/Bubble_sort
 	 * @param array
-	 *            of Objects to sort, if they are numbers
-	 * @return sorted array of Objects
+	 *            of double to sort, if they are numbers
+	 * @return sorted array of double
 	 */
-	public static Object[] bubbleSort(Object[] array) {
-		numOfIterations = 0;
-		double[] arrayToSort = getConvertedArray(array);
-
-		if (null != arrayToSort) {
+	public static double[] bubbleSort(double[] array) {
+		if (isNotEmptyArray(array)) {
 			double temp;
 
-			for (int index = arrayToSort.length - 1; index >= 0; index--) {
+			for (int index = array.length - 1; index >= 0; index--) {
 				for (int scan = 0; scan < index; scan++) {
-					if (arrayToSort[scan] > arrayToSort[scan + 1]) {
-						temp = arrayToSort[scan];
-						arrayToSort[scan] = arrayToSort[scan + 1];
-						arrayToSort[scan + 1] = temp;
-						numOfIterations++;
+					if (array[scan] > array[scan + 1]) {
+						temp = array[scan];
+						array[scan] = array[scan + 1];
+						array[scan + 1] = temp;
 					}
 				}
 			}
-			return convertArrayToObject(arrayToSort);
+			return array;
 		}
-		System.out.println("Bubble Sort failed");
 		return array;
 	}
 
@@ -148,20 +129,16 @@ public final class SortMethods {
 	 * 
 	 * @see https://en.wikipedia.org/wiki/Quicksort
 	 * @param array
-	 *            of Objects to sort, if they are numbers
-	 * @return sorted array of Objects
+	 *            of double to sort, if they are numbers
+	 * @return sorted array of double
 	 */
-	public static Object[] quickSort(Object[] array) {
-		numOfIterations = 0;
-		double[] arrayToSort = getConvertedArray(array);
+	public static double[] quickSort(double[] array) {
+		if (isNotEmptyArray(array)) {
 
-		if (null != arrayToSort) {
+			array = quickSortPartition(array, 0, array.length - 1);
 
-			arrayToSort = quickSortPartition(arrayToSort, 0, arrayToSort.length - 1);
-
-			return convertArrayToObject(arrayToSort);
+			return array;
 		}
-		System.out.println("QuickSort failed");
 		return array;
 	}
 
@@ -178,100 +155,53 @@ public final class SortMethods {
 	 * @return sorted array of Objects
 	 */
 	private static double[] quickSortPartition(double[] array, int lowIndex, int highIndex) {
-		double temp;
-		double pivot = array[lowIndex + (highIndex - lowIndex) / 2];
+		if (isNotEmptyArray(array)) {
+			double temp;
+			double pivot = array[lowIndex + (highIndex - lowIndex) / 2];
 
-		int i = lowIndex;
-		int j = highIndex;
-		while (i <= j) {
-			while (array[i] < pivot) {
-				i++;
+			int i = lowIndex;
+			int j = highIndex;
+			while (i <= j) {
+				while (array[i] < pivot) {
+					i++;
+				}
+				while (array[j] > pivot) {
+					j--;
+				}
+				if (i <= j) {
+					temp = array[i];
+					array[i] = array[j];
+					array[j] = temp;
+					i++;
+					j--;
+				}
 			}
-			while (array[j] > pivot) {
-				j--;
+
+			// recursion
+			if (lowIndex < j) {
+				quickSortPartition(array, lowIndex, j);
 			}
-			if (i <= j) {
-				temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
-				i++;
-				j--;
-				numOfIterations++;
+			if (highIndex > i) {
+				quickSortPartition(array, i, highIndex);
 			}
+			return array;
 		}
-
-		// recursion
-		if (lowIndex < j)
-			quickSortPartition(array, lowIndex, j);
-		if (highIndex > i)
-			quickSortPartition(array, i, highIndex);
-
 		return array;
+
 	}
 
 	/**
-	 * Method implements conversion of array of Objects to array of double
-	 * elements with Exception implementation
+	 * Auxiliary method to check if array of double is empty
 	 * 
 	 * @param array
-	 *            of Objects to convert into double
-	 * @return array of double elements
-	 * @throws NotANumberInArrayException
+	 *            of double to check
+	 * @return true if array is not empty
 	 */
-	private static double[] getConvertedArray(Object[] array) {
-		try {
-			return convertArrayToDouble(array);
-		} catch (ZeroLengthArrayException e) {
-			return null;
-		} catch (NotANumberInArrayException e) {
-			return null;
+	private static boolean isNotEmptyArray(double[] array) {
+		if (null == array || array.length == 0) {
+			System.err.println("Array is empty");
+			return false;
 		}
-	}
-
-	/**
-	 * Method implements conversion of each element of Objects array to array of
-	 * double elements
-	 * 
-	 * @param array
-	 *            of Objects to convert into double
-	 * @return array of double elements
-	 * @throws NotANumberInArrayException
-	 * @throws ZeroLengthArrayException
-	 */
-	private static double[] convertArrayToDouble(Object[] array)
-			throws NotANumberInArrayException, ZeroLengthArrayException {
-
-		if (0 == array.length)
-			throw new ZeroLengthArrayException();
-
-		double[] myArray = new double[array.length];
-		int index = 0;
-
-		for (Object obj : array) {
-			if (obj instanceof Number) {
-				myArray[index] = ((Number) obj).doubleValue();
-				index++;
-			} else
-				throw new NotANumberInArrayException(obj);
-		}
-		return myArray;
-	}
-
-	/**
-	 * Method implements conversion of each element of array to Object
-	 * 
-	 * @param array
-	 *            of double elements to convert into Object
-	 * @return array of Object elements
-	 */
-	private static Object[] convertArrayToObject(double[] array) {
-		Object[] myArray = new Object[array.length];
-		int index = 0;
-
-		for (double temp : array) {
-			myArray[index] = temp;
-			index++;
-		}
-		return myArray;
+		return true;
 	}
 }
